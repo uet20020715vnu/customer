@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+
 public class Customer {
     String name;
     String email;
@@ -45,10 +46,10 @@ public class Customer {
         while (true) {
             System.out.println("Nhập tên: ");
             name = sc.nextLine();
-            if (name.equals("") || name.isEmpty()) {
-                System.out.println("Tên không được để trống\n" +
-                        "Nhập lại tên: ");
-            } else break;
+            if (Util.isValidName(name)) {
+                break;
+            } else System.out.println("Tên không được để trống\n" +
+                    "Nhập lại tên: ");
         }
     }
 
@@ -57,7 +58,7 @@ public class Customer {
         while (true) {
             System.out.println("Nhập Email: ");
             email = sc.nextLine();
-            if (email.matches("^\\w+@\\w+(\\.\\w{2,}){1,2}$")) {
+            if (Util.isValidEmail(email)) {
                 break;
             } else System.out.println("Email không hợp lệ\n");
         }
@@ -68,7 +69,7 @@ public class Customer {
         while (true) {
             System.out.println("Nhập số điện thoại: ");
             phone = sc.nextLine();
-            if (phone.matches("^0\\d{9}")) {
+            if (Util.isValidPhoneNumber(phone)) {
                 break;
             } else System.out.println("Số điện không hợp lệ\n");
         }
@@ -97,6 +98,6 @@ public class Customer {
     }
 
     public String toString() {
-        return "Customer [ name=" + name + ", email=" + email + ", phone=" + phone + "]";
+        return String.format("%-20s %-30s %-10s%n", name, email, phone);
     }
 }
